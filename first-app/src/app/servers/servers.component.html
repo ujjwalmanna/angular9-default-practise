@@ -1,0 +1,13 @@
+<h3>Hello {{serverId}} from {{serverName}} status {{getServerStatus()}}</h3>
+<p  [innerText]="serverStatus"></p>
+<input type="text" class="form-control" (input)="onupdate($event)"/>
+<input type="text" class="form-control" [(ngModel)]="serverName"/>
+<p *ngIf="isClicked; else noClick" [ngStyle]="{backgroundColor:getColor()}" [ngClass]="{online:true}">{{serverName}}</p>
+<ng-template #noClick>
+    <p>
+        not clicked
+    </p>
+</ng-template>
+<input type="button" class="btn btn-primary"  [disabled]="!allowNewServer" value="Click me" (click)="clickMe()"/>
+<app-server></app-server>
+<app-server></app-server>
