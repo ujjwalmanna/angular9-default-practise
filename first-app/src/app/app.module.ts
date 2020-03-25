@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ServerComponent } from './server/server.component';
@@ -15,6 +15,8 @@ import { AccountComponent } from './account/account.component';
 import { NewAccountComponent } from './new-account/new-account.component';
 import { AccountService } from './account.service';
 import { LoggingService } from './logging.service';
+import { UserFormComponent } from './user-form/user-form.component';
+import { ReactiveUserFormComponent } from './reactive-user-form/reactive-user-form.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +30,14 @@ import { LoggingService } from './logging.service';
     BetterHighlightDirective,
     UnlessDirective,
     AccountComponent,
-    NewAccountComponent
+    NewAccountComponent,
+    UserFormComponent,
+    ReactiveUserFormComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AccountService,LoggingService],
   bootstrap: [AppComponent]
