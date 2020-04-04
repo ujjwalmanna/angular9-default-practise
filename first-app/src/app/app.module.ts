@@ -17,6 +17,12 @@ import { AccountService } from './account.service';
 import { LoggingService } from './logging.service';
 import { UserFormComponent } from './user-form/user-form.component';
 import { ReactiveUserFormComponent } from './reactive-user-form/reactive-user-form.component';
+import { PipeDemoComponent } from './pipe-demo/pipe-demo.component';
+import { ShortenPipe } from './pipe-demo/shorten.pipe';
+import { FilterPipe } from './pipe-demo/filter.pipe';
+import { HttpDemoComponent } from './http-demo/http-demo.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './http-demo/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -32,14 +38,23 @@ import { ReactiveUserFormComponent } from './reactive-user-form/reactive-user-fo
     AccountComponent,
     NewAccountComponent,
     UserFormComponent,
-    ReactiveUserFormComponent
+    ReactiveUserFormComponent,
+    PipeDemoComponent,
+    ShortenPipe,
+    FilterPipe,
+    HttpDemoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [AccountService,LoggingService],
+  providers: [AccountService , LoggingService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
